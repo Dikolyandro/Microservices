@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package statistics;
+
+option go_package = "statistics_service/proto/statisticspb";
+
+service StatisticsService {
+  rpc GetUserOrderStats (UserStatsRequest) returns (UserStatsResponse);
+}
+
+message UserStatsRequest {
+  string user_id = 1;
+}
+
+message UserStatsResponse {
+  repeated OrderStat orders = 1;
+}
+
+message OrderStat {
+  string order_id = 1;
+  string user_id = 2;
+  string created_at = 3;
+}
